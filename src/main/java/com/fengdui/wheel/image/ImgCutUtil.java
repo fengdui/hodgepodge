@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.fengdui.wheel.image;
 
 import javax.imageio.ImageIO;

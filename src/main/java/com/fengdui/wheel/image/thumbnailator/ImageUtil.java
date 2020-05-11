@@ -1,6 +1,7 @@
 
-package com.fengdui.wheel.image;
+package com.fengdui.wheel.image.thumbnailator;
 
+import com.fengdui.wheel.image.ImageMarkLogoByIcon;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.io.FileUtils;
 

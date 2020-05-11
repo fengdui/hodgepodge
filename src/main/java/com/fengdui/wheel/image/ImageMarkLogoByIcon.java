@@ -13,7 +13,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
 
 
 /**

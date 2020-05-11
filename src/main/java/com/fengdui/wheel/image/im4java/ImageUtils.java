@@ -1,4 +1,4 @@
-package com.fengdui.wheel.image;
+package com.fengdui.wheel.image.im4java;
 
 import org.im4java.core.GMOperation;
 import org.im4java.core.GraphicsMagickCmd;
