@@ -49,7 +49,8 @@ public class SecureUtil {
 	 * @return 被加密后的值
 	 */
 	public static String encrypt(String source, String algorithmName, String charset) {
-		return encrypt(StringUtil.encode(source, charset), algorithmName);
+//		return encrypt(String.encode(source, charset), algorithmName);
+		return "";
 	}
 
 	/**
@@ -60,7 +61,8 @@ public class SecureUtil {
 	 * @return 被加密后的值
 	 */
 	public static String encrypt(byte[] bytes, String algorithmName) {
-		return Convert.toHex(encryptWithoutHex(bytes, algorithmName));
+//		return Convert.toHex(encryptWithoutHex(bytes, algorithmName));
+		return "";
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class SecureUtil {
 			}
 			md = MessageDigest.getInstance(algorithmName);
 		} catch (NoSuchAlgorithmException e) {
-			throw new UtilException(StringUtil.format("No such algorithm name for: {}", algorithmName));
+			throw new RuntimeException(String.format("No such algorithm name for: {}", algorithmName));
 		}
 		return md.digest(bytes);
 	}
@@ -108,9 +110,9 @@ public class SecureUtil {
 			mac = Mac.getInstance(algorithm);
 			mac.init(new SecretKeySpec(key, algorithm));
 		} catch (NoSuchAlgorithmException e) {
-			throw new UtilException(e, "No such algorithm: {}", algorithm);
+			throw new RuntimeException(String.format("No such algorithm: {}", algorithm), e);
 		} catch (InvalidKeyException e) {
-			throw new UtilException(e, "Invalid key: {}", key);
+			throw new RuntimeException(String.format("Invalid key: {}", key), e);
 		}
 		return mac == null ? null : mac.doFinal(data);
 	}
@@ -226,7 +228,8 @@ public class SecureUtil {
 	 * @return 被加密后的字符串
 	 */
 	public static String base64(String source, String charset) {
-		return new String(base64(StringUtil.encode(source, charset), false), Charset.forName(charset));
+//		return new String(base64(StringUtil.encode(source, charset), false), Charset.forName(charset));
+		return "";
 	}
 
 	/**
@@ -248,7 +251,8 @@ public class SecureUtil {
 	 * @return 被加密后的字符串
 	 */
 	public static String decodeBase64(String source, String charset) {
-		return new String(decodeBase64(StringUtil.encode(source, charset)), Charset.forName(charset));
+//		return new String(decodeBase64(StringUtil.encode(source, charset)), Charset.forName(charset));
+		return "";
 	}
 
 	/**

@@ -50,19 +50,7 @@ public class Validator {
 	public static <T> boolean isEmpty(T value) {
 		return (null == value || (value instanceof String && StringUtils.isEmpty((String) value)));
 	}
-
-	/**
-	 * 验证是否相等<br>
-	 * 当两值都为null返回true
-	 * 
-	 * @param t1 对象1
-	 * @param t2 对象2
-	 * @return 当两值都为null或相等返回true
-	 */
-	public static boolean equals(Object t1, Object t2) {
-		return Func.equals(t1, t2);
-	}
-
+	
 	/**
 	 * 通过正则表达式验证
 	 * 

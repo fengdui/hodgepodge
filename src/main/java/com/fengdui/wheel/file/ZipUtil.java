@@ -1,22 +1,15 @@
 package com.fengdui.wheel.file;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Enumeration;
-import java.util.zip.CRC32;
-import java.util.zip.CheckedOutputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
-
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.util.Enumeration;
+import java.util.zip.*;
 
 public class ZipUtil {
 
-	private static final Logger log = Log.get(ZipUtil.class);
+	private static final Logger log = LoggerFactory.getLogger(ZipUtil.class);
 
 	/**
 	 * 对文件或文件目录进行压缩<br>
@@ -121,7 +114,7 @@ public class ZipUtil {
 				in = FileUtil.getInputStream(file);
 				IoUtil.copy(in, out);
 			} catch (IOException e) {
-				throw new UtilException(e);
+				throw new RuntimeException(e);
 			} finally {
 				FileUtil.close(in);
 				closeEntry(out);
@@ -141,15 +134,15 @@ public class ZipUtil {
 	 */
 	private static void validateFile(File srcFile, File zipFile) {
 		if (false == srcFile.exists()) {
-			throw new UtilException(StringUtil.format("File [{}] not exist!", srcFile.getAbsolutePath()));
+			throw new RuntimeException(String.format("File [{}] not exist!", srcFile.getAbsolutePath()));
 		}
 
 		try {
 			if (srcFile.isDirectory() && zipFile.getCanonicalPath().contains(srcFile.getCanonicalPath())) {
-				throw new UtilException("[zipPath] must not be the child directory of [srcPath]!");
+				throw new RuntimeException("[zipPath] must not be the child directory of [srcPath]!");
 			}
 		} catch (IOException e) {
-			throw new UtilException(e);
+			throw new RuntimeException(e);
 		}
 	}
 

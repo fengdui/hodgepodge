@@ -1,18 +1,8 @@
 package com.fengdui.wheel.file;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.*;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,8 +11,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-
-import org.apache.commons.lang3.StringUtils;
 
 
 public class FileUtil {
@@ -58,7 +46,7 @@ public class FileUtil {
 		if (file.isDirectory()) {
 			return file.listFiles();
 		}
-		throw new UtilException(StringUtil.format("Path [{}] is not directory!", path));
+		throw new RuntimeException(String.format("Path [{}] is not directory!", path));
 	}
 
 	/**
@@ -97,7 +85,7 @@ public class FileUtil {
 				for (JarEntry entry : Collections.list(new JarFile(jarPath).entries())) {
 					final String name = entry.getName();
 					if (name.startsWith(subPath)) {
-						String nameSuffix = StringUtil.removePrefix(name, subPath);
+						String nameSuffix = StringUtils.removeStart(name, subPath);
 						if (!nameSuffix.contains(String.valueOf(UNIX_SEPARATOR))) {
 							paths.add(nameSuffix);
 						}
@@ -105,7 +93,7 @@ public class FileUtil {
 				}
 			}
 		} catch (Exception e) {
-			throw new UtilException(StringUtil.format("Can not read file path of [{}]", path), e);
+			throw new RuntimeException(String.format("Can not read file path of [{}]", path), e);
 		}
 		return paths;
 	}
@@ -347,7 +335,7 @@ public class FileUtil {
 
 		// 来源为文件夹，目标为文件
 		if (src.isDirectory() && dest.isFile()) {
-			throw new IOException(StringUtil.format("Can not move directory [{}] to file [{}]", src, dest));
+			throw new IOException(String.format("Can not move directory [{}] to file [{}]", src, dest));
 		}
 
 		// 来源为文件，目标为文件夹
@@ -361,7 +349,7 @@ public class FileUtil {
 				copy(src, dest, isOverride);
 				src.delete();
 			} catch (Exception e) {
-				throw new IOException(StringUtil.format("Move [{}] to [{}] failed!", src, dest), e);
+				throw new IOException(String.format("Move [{}] to [{}] failed!", src, dest), e);
 			}
 
 		}
@@ -383,7 +371,7 @@ public class FileUtil {
 			return getAbsolutePath(path);
 		}
 		// return baseClass.getResource(path).getPath();
-		return StringUtil.removePrefix(PATH_FILE_PRE, baseClass.getResource(path).getPath());
+		return StringUtils.removeStart(PATH_FILE_PRE, baseClass.getResource(path).getPath());
 	}
 
 	/**
@@ -406,10 +394,10 @@ public class FileUtil {
 
 		}
 
-		ClassLoader classLoader = ClassUtil.getClassLoader();
+		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
 		URL url = classLoader.getResource(path);
 		String reultPath = url != null ? url.getPath() : classLoader.getResource(StringUtils.EMPTY).getPath() + path;
-		return StringUtil.removePrefix(reultPath, PATH_FILE_PRE);
+		return StringUtils.removeStart(reultPath, PATH_FILE_PRE);
 	}
 
 	/**
@@ -668,7 +656,7 @@ public class FileUtil {
 		if (fileName == null) {
 			return null;
 		}
-		int index = fileName.lastIndexOf(StringUtil.DOT);
+		int index = fileName.lastIndexOf(".");
 		if (index == -1) {
 			return StringUtils.EMPTY;
 		} else {
@@ -973,7 +961,7 @@ public class FileUtil {
 		try {
 			subPath = file.getCanonicalPath();
 		} catch (IOException e) {
-			throw new UtilException(e);
+			throw new RuntimeException(e);
 		}
 
 		if (StringUtils.isNotEmpty(rootDir) && StringUtils.isNotEmpty(subPath)) {

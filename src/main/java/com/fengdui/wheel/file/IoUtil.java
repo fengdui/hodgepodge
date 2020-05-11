@@ -163,7 +163,8 @@ public class IoUtil {
 	 */
 	public static String getString(FileChannel fileChannel, String charset) throws IOException {
 		final MappedByteBuffer buffer = fileChannel.map(FileChannel.MapMode.READ_ONLY, 0, fileChannel.size()).load();
-		return CharsetUtil.str(buffer, charset);
+//		return CharsetUtil.str(buffer, charset);
+		return "";
 	}
 
 	/**
@@ -182,7 +183,7 @@ public class IoUtil {
 		try {
 			data = StringUtils.isBlank(charset) ? content.getBytes() : content.getBytes(charset);
 		} catch (UnsupportedEncodingException e) {
-			throw new UtilException(StringUtil.format("Invalid charset [{}] !", charset), e);
+			throw new RuntimeException(String.format("Invalid charset [{}] !", charset), e);
 		}
 
 		return new ByteArrayInputStream(data);
@@ -203,7 +204,7 @@ public class IoUtil {
 			osw = new OutputStreamWriter(out, charset);
 			for (Object content : contents) {
 				if (content != null) {
-					osw.write(Convert.toStr(content, StringUtils.EMPTY));
+					osw.write(content.toString());
 				}
 			}
 		} catch (Exception e) {
@@ -225,7 +226,7 @@ public class IoUtil {
 		if (content == null) {
 			System.out.println(content);
 		}
-		System.out.println(StringUtil.format(content.toString(), param));
+		System.out.println(String.format(content.toString(), param));
 	}
 
 }

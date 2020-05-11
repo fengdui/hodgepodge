@@ -6,7 +6,10 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Sets;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 
 public class ReUtil {
 
@@ -17,7 +20,7 @@ public class ReUtil {
 	public final static Pattern GROUP_VAR = Pattern.compile("\\$(\\d+)");
 
 	/** 正则中需要被转义的关键字 */
-	public final static Set<Character> RE_KEYS = CollectionUtil.newHashSet(new Character[] { '$', '(', ')', '*', '+', '.', '[', ']', '?', '\\', '^', '{', '}', '|' });
+	public final static Set<Character> RE_KEYS = Sets.newHashSet(new Character[] { '$', '(', ')', '*', '+', '.', '[', ']', '?', '\\', '^', '{', '}', '|' });
 
 	private ReUtil() {
 		// 阻止实例化
@@ -97,7 +100,7 @@ public class ReUtil {
 				int group = Integer.parseInt(var);
 				template = template.replace("$" + var, matcher.group(group));
 			}
-			contents[0] = StringUtil.sub(content, matcher.end(), content.length());
+			contents[0] = StringUtils.substring(content, matcher.end(), content.length());
 			return template;
 		}
 		return null;
@@ -155,7 +158,7 @@ public class ReUtil {
 	public static String delPre(String regex, String content) {
 		Matcher matcher = Pattern.compile(regex, Pattern.DOTALL).matcher(content);
 		if (matcher.find()) {
-			return StringUtil.sub(content, matcher.end(), content.length());
+			return StringUtils.substring(content, matcher.end(), content.length());
 		}
 		return content;
 	}
@@ -198,7 +201,7 @@ public class ReUtil {
 	 * @return 整数
 	 */
 	public static Integer getFirstNumber(String StringWithNumber) {
-		return Convert.toInt(get(Validator.NUMBER, StringWithNumber, 0), null);
+		return Integer.parseInt(get(Validator.NUMBER, StringWithNumber, 0));
 	}
 
 	/**
