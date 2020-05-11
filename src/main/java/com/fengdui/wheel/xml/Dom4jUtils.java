@@ -9,9 +9,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 
-public class XMLUtils {
+public class Dom4jUtils {
 	
-	private XMLUtils(){}
+	private Dom4jUtils(){}
 	
 	private static final String DEFAULT_CHAR_SET = "utf-8";//默认编码
 	private static SAXReader reader;
@@ -31,7 +31,7 @@ public class XMLUtils {
 	public static Document getDocument(InputStream in) throws Exception{
 		return reader.read(in);
 	}
-	
+
 	/**
 	 * 
 	 * 获取Document对象.<br>

@@ -1,18 +1,12 @@
 package com.fengdui.wheel.net;
 
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.NetworkInterface;
-import java.net.Socket;
-import java.net.SocketException;
-import java.net.URL;
+import com.fengdui.wheel.regex.Validator;
+import org.apache.commons.lang3.StringUtils;
+
+import java.net.*;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.fengdui.wheel.regex.Validator;
-import org.apache.commons.lang3.StringUtils;
 
 
 /**
@@ -127,11 +121,11 @@ public class NetUtil {
 		try {
 			networkInterfaces = NetworkInterface.getNetworkInterfaces();
 		} catch (SocketException e) {
-			throw new UtilException(e.getMessage(), e);
+			throw new RuntimeException(e.getMessage(), e);
 		}
 
 		if (networkInterfaces == null) {
-			throw new UtilException("Get network interface error!");
+			throw new RuntimeException("Get network interface error!");
 		}
 
 		final HashSet<String> ipSet = new HashSet<String>();
@@ -162,7 +156,7 @@ public class NetUtil {
 			URL absoluteUrl = new URL(absoluteBasePath);
 			return new URL(absoluteUrl, relativePath).toString();
 		} catch (Exception e) {
-			throw new UtilException(StringUtil.format("To absolute url [{}] base [{}] error!", relativePath, absoluteBasePath), e);
+			throw new RuntimeException(String.format("To absolute url [{}] base [{}] error!", relativePath, absoluteBasePath), e);
 		}
 	}
 

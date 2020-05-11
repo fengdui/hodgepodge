@@ -14,7 +14,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JaxbUtil
+public class JaxbUtils
 {
 
     /**
@@ -85,7 +85,7 @@ public class JaxbUtil
 
     public static void main(String[] args)
     {
-        JaxbUtil util = new JaxbUtil();
+        JaxbUtils util = new JaxbUtils();
         util.testStrToObj();
         util.testObjToStr();
     }

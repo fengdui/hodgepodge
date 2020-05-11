@@ -20,12 +20,8 @@ public class URLUtil {
 	 * @param url URL
 	 * @return URL对象
 	 */
-	public static URL url(String url) {
-		try {
-			return new URL(url);
-		} catch (MalformedURLException e) {
-			throw new UtilException(e.getMessage(), e);
-		}
+	public static URL url(String url) throws MalformedURLException {
+		return new URL(url);
 	}
 
 	/**
@@ -35,7 +31,7 @@ public class URLUtil {
 	 * @return URL
 	 */
 	public static URL getURL(String pathBaseClassLoader) {
-		return ClassUtil.getClassLoader().getResource(pathBaseClassLoader);
+		return Thread.currentThread().getContextClassLoader().getResource(pathBaseClassLoader);
 	}
 
 	/**
@@ -54,14 +50,9 @@ public class URLUtil {
 	 * 
 	 * @param configFile URL对应的文件对象
 	 * @return URL
-	 * @exception UtilException MalformedURLException
 	 */
-	public static URL getURL(File configFile) {
-		try {
-			return configFile.toURI().toURL();
-		} catch (MalformedURLException e) {
-			throw new UtilException("Error occured when get URL!", e);
-		}
+	public static URL getURL(File configFile) throws MalformedURLException {
+		return configFile.toURI().toURL();
 	}
 
 	/**
@@ -86,21 +77,16 @@ public class URLUtil {
 	 * @param baseUrl 基准URL
 	 * @param relativePath 相对URL
 	 * @return 相对路径
-	 * @exception UtilException MalformedURLException
 	 */
-	public static String complateUrl(String baseUrl, String relativePath) {
+	public static String complateUrl(String baseUrl, String relativePath) throws MalformedURLException {
 		baseUrl = formatUrl(baseUrl);
 		if (StringUtils.isBlank(baseUrl)) {
 			return null;
 		}
 
-		try {
-			final URL absoluteUrl = new URL(baseUrl);
-			final URL parseUrl = new URL(absoluteUrl, relativePath);
-			return parseUrl.toString();
-		} catch (MalformedURLException e) {
-			throw new UtilException(e);
-		}
+		final URL absoluteUrl = new URL(baseUrl);
+		final URL parseUrl = new URL(absoluteUrl, relativePath);
+		return parseUrl.toString();
 	}
 
 	/**
@@ -109,14 +95,9 @@ public class URLUtil {
 	 * @param url URL
 	 * @param charset 编码
 	 * @return 编码后的URL
-	 * @exception UtilException UnsupportedEncodingException
 	 */
-	public static String encode(String url, String charset) {
-		try {
-			return URLEncoder.encode(url, charset);
-		} catch (UnsupportedEncodingException e) {
-			throw new UtilException(e);
-		}
+	public static String encode(String url, String charset) throws UnsupportedEncodingException {
+		return URLEncoder.encode(url, charset);
 	}
 
 	/**
@@ -125,14 +106,9 @@ public class URLUtil {
 	 * @param url URL
 	 * @param charset 编码
 	 * @return 解码后的URL
-	 * @exception UtilException UnsupportedEncodingException
 	 */
-	public static String decode(String url, String charset) {
-		try {
-			return URLDecoder.decode(url, charset);
-		} catch (UnsupportedEncodingException e) {
-			throw new UtilException(e);
-		}
+	public static String decode(String url, String charset) throws UnsupportedEncodingException {
+		return URLDecoder.decode(url, charset);
 	}
 
 	/**
@@ -141,20 +117,13 @@ public class URLUtil {
 	 * 
 	 * @param uriStr URI路径
 	 * @return path
-	 * @exception UtilException URISyntaxException
 	 */
-	public static String getPath(String uriStr) {
-		URI uri = null;
-		try {
-			uri = new URI(uriStr);
-		} catch (URISyntaxException e) {
-			throw new UtilException(e);
-		}
-
+	public static String getPath(String uriStr) throws URISyntaxException {
+		URI uri = new URI(uriStr);
 		return uri == null ? null : uri.getPath();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws URISyntaxException {
 		System.out.println(getPath("http://www.oschina.net/search?scope=blog&q=netty"));
 	}
 
