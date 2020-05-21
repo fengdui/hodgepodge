@@ -52,6 +52,7 @@ public class RegexUtils {
 
     public static Pattern telephonePattern = Pattern.compile("^\\d{11}$");
     public static Pattern emailPattern = Pattern.compile("^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$");
+    public static Pattern FORMAT_EMAIL = Pattern.compile("^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$");
     public static Pattern htmlPattern = Pattern.compile("<[^>]+>"); //定义HTML标签的正则表达式
     public static Pattern scriptPattern = Pattern.compile("<script[^>]*?>[\\s\\S]*?<\\/script>",Pattern.CASE_INSENSITIVE);
 
@@ -79,6 +80,12 @@ public class RegexUtils {
     }
     public static String clearIllegalChar(String input) {
         return StringUtils.replaceChars(input, illegalChars, "");
+    }
+
+    public static boolean isIP(String ipStr) {
+        String ip = "(25[0-5]|2[0-4]\\d|1\\d\\d|\\d\\d|\\d)";
+        String ipDot = ip + "\\.";
+        return ipStr.matches(ipDot + ipDot + ipDot + ip);
     }
 
 }

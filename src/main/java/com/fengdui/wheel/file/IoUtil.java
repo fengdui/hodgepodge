@@ -16,6 +16,7 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Collection;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class IoUtil {
@@ -216,17 +217,8 @@ public class IoUtil {
 		}
 	}
 
-	/**
-	 * 打印内容，调用系统的System.out.println方法
-	 * 
-	 * @param content 内容，会调用toString方法， 当内容中有 {} 表示变量占位符
-	 * @param param 参数
-	 */
-	public static void echo(Object content, Object... param) {
-		if (content == null) {
-			System.out.println(content);
-		}
-		System.out.println(String.format(content.toString(), param));
+	public static byte[] inputStreamToByte(InputStream inputStream) throws IOException {
+		return IOUtils.toByteArray(inputStream);
 	}
 
 }

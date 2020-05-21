@@ -1,6 +1,9 @@
 package com.fengdui.wheel.net;
 
 
+import org.apache.commons.lang3.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -38,6 +41,48 @@ public class IpUtils {
 	public String getHostName() throws Exception{
 		InetAddress address = InetAddress.getLocalHost();
 		return address.getHostName();
+	}
+
+	/**
+	 * 获取登录用户的IP地址
+	 * @param request 请求
+	 * @return
+	 */
+	public static String getIpAddr(HttpServletRequest request) {
+		String ip = request.getHeader("x-forwarded-for");
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		if (ip.equals("0:0:0:0:0:0:0:1")) {
+			ip = "本地";
+		}
+		if (ip.split(",").length > 1) {
+			ip = ip.split(",")[0];
+		}
+		return ip;
+	}
+	/**
+	 * IP加密处理
+	 * @param ip  需要进行处理的IP
+	 * @return
+	 */
+	public static String hideIp(String ip) {
+		if (StringUtils.isEmpty(ip)) {
+			return "";
+		}
+		int pos = ip.lastIndexOf(".");
+		if (pos == -1) {
+			return ip;
+		}
+		ip = ip.substring(0, pos + 1);
+		ip = ip + "*";
+		return ip;
 	}
 	
 	public static void main(String[] args) throws UnknownHostException {
