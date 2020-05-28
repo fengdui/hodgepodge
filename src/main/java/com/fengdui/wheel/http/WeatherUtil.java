@@ -21,6 +21,20 @@ public class WeatherUtil {
 	public static final String VAL_CITY_DEFAULT = "杭州";
 	public static final String API_KEY = "";
 
+	private static final String[] IP_HEADERS_TO_TRY = { "X-Forwarded-For", "Proxy-Client-IP", "WL-Proxy-Client-IP", "HTTP_X_FORWARDED_FOR", "HTTP_X_FORWARDED", "HTTP_X_CLUSTER_CLIENT_IP",
+			"HTTP_CLIENT_IP", "HTTP_FORWARDED_FOR", "HTTP_FORWARDED", "HTTP_VIA", "REMOTE_ADDR", "X-Real-IP" };
+	/**
+	 * 获取远程客户端 IP
+	 */
+	public static String getIPFromClient(HttpServletRequest request) {
+		for (String header : IP_HEADERS_TO_TRY) {
+			String ip = request.getHeader(header);
+			if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
+				return ip;
+			}
+		}
+		return request.getRemoteAddr();
+	}
 	/**
 	 * 获取天气信息
 	 */
@@ -28,7 +42,7 @@ public class WeatherUtil {
 		BufferedReader reader = null;
 		String result = null;
 		StringBuffer sbf = new StringBuffer();
-		String ip = HttpUtil.getIPFromClient(request);
+		String ip = getIPFromClient(request);
 		String httpUrl = HTTP_URL + "?" + (ip.indexOf("0:0:0:0") >= 0 ? (PARAM_CITY + "=" + VAL_CITY_DEFAULT) : (PARAM_CITYIP + "=" + ip));
 		try {
 			URL url = new URL(httpUrl);
