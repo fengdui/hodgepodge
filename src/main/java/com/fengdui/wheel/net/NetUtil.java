@@ -43,20 +43,17 @@ public class NetUtil {
 	 * @return long值
 	 */
 	public static long ipv4ToLong(String strIP) {
-		if (Validator.isIpv4(strIP)) {
-			long[] ip = new long[4];
-			// 先找到IP地址字符串中.的位置
-			int position1 = strIP.indexOf(".");
-			int position2 = strIP.indexOf(".", position1 + 1);
-			int position3 = strIP.indexOf(".", position2 + 1);
-			// 将每个.之间的字符串转换成整型
-			ip[0] = Long.parseLong(strIP.substring(0, position1));
-			ip[1] = Long.parseLong(strIP.substring(position1 + 1, position2));
-			ip[2] = Long.parseLong(strIP.substring(position2 + 1, position3));
-			ip[3] = Long.parseLong(strIP.substring(position3 + 1));
-			return (ip[0] << 24) + (ip[1] << 16) + (ip[2] << 8) + ip[3];
-		}
-		return 0;
+		long[] ip = new long[4];
+		// 先找到IP地址字符串中.的位置
+		int position1 = strIP.indexOf(".");
+		int position2 = strIP.indexOf(".", position1 + 1);
+		int position3 = strIP.indexOf(".", position2 + 1);
+		// 将每个.之间的字符串转换成整型
+		ip[0] = Long.parseLong(strIP.substring(0, position1));
+		ip[1] = Long.parseLong(strIP.substring(position1 + 1, position2));
+		ip[2] = Long.parseLong(strIP.substring(position2 + 1, position3));
+		ip[3] = Long.parseLong(strIP.substring(position3 + 1));
+		return (ip[0] << 24) + (ip[1] << 16) + (ip[2] << 8) + ip[3];
 	}
 
 	/**
