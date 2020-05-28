@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 
 public class Passport {
 
-    public static final String key= "QUKAN_JAVA_2015/09/14";
+    public static final String key= "/09/14";
 
     /**
      * 加密

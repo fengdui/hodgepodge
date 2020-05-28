@@ -1,7 +1,15 @@
 package com.fengdui.wheel.web;
 
+import org.apache.commons.codec.net.URLCodec;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+/**
+ * Escape编码
+ */
 public class EscapeUtil {
 
 	/**
@@ -78,18 +86,11 @@ public class EscapeUtil {
 		return tmp.toString();
 	}
 
-	/**
-	 * 安全的unescape文本，当文本不是被escape的时候，返回原文。
-	 * 
-	 * @param content 内容
-	 * @return 解码后的字符串，如果解码失败返回原字符串
-	 */
-	public static String safeUnescape(String content) {
-		try {
-			return unescape(content);
-		} catch (Exception e) {
-		}
-		return content;
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		String url = "<s:property value=\"webPath\"/>/ShowMoblieQRCode.servlet?name=我是cm";
+		System.out.println(URLEncoder.encode(url, "UTF-8"));
+		System.out.println(escape("你好"));
+		System.out.println(new URLCodec().encode(url, "utf-8"));
+		System.out.println(StringEscapeUtils.escapeHtml4("你好"));
 	}
-
 }
