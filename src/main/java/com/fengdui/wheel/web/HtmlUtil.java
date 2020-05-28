@@ -2,56 +2,13 @@ package com.fengdui.wheel.web;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class HtmlUtil {
 
 	public static final String RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)";
 	public static final String RE_SCRIPT = "<[\\s]*?script[^>]*?>.*?<[\\s]*?\\/[\\s]*?script[\\s]*?>";
-
-	private static final char[][] TEXT = new char[64][];
-
-	static {
-		for (int i = 0; i < 64; i++) {
-			TEXT[i] = new char[] { (char) i };
-		}
-
-		// special HTML characters
-		TEXT['\''] = "&#039;".toCharArray(); // 单引号 ('&apos;' doesn't work - it is not by the w3 specs)
-		TEXT['"'] = "&quot;".toCharArray(); // 双引号
-		TEXT['&'] = "&amp;".toCharArray(); // &符
-		TEXT['<'] = "&lt;".toCharArray(); // 小于号
-		TEXT['>'] = "&gt;".toCharArray(); // 大于号
-	}
-
-	/**
-	 * 还原被转义的HTML特殊字符
-	 * 
-	 * @param htmlStr 包含转义符的HTML内容
-	 * @return 转换后的字符串
-	 */
-	public static String restoreEscaped(String htmlStr) {
-		if (StringUtils.isBlank(htmlStr)) {
-			return htmlStr;
-		}
-		return htmlStr.replace("&#39;", "'").replace("&lt;", "<").replace("&lt;", ">").replace("&amp;", "&").replace("&quot;", "\"")
-				.replace("&nbsp;", " ");
-	}
-
-	/**
-	 * 转义文本中的HTML字符为安全的字符，以下字符被转义：
-	 * <ul>
-	 * <li>' with &amp;#039; (&amp;apos; doesn't work in HTML4)</li>
-	 * <li>" with &amp;quot;</li>
-	 * <li>&amp; with &amp;amp;</li>
-	 * <li>&lt; with &amp;lt;</li>
-	 * <li>&gt; with &amp;gt;</li>
-	 * </ul>
-	 * 
-	 * @param text 被转义的文本
-	 * @return 转义后的文本
-	 */
-	public static String encode(String text) {
-		return encode(text, TEXT);
-	}
 
 	/**
 	 * 清除所有HTML标签
@@ -151,25 +108,46 @@ public class HtmlUtil {
 		}
 		return content;
 	}
-
 	/**
-	 * Encoder.
+	 * 清楚html标签
+	 * @param inputString
+	 * @param stringLenth
+	 * @return
 	 */
-	private static String encode(String text, char[][] array) {
-		int len;
-		if ((text == null) || ((len = text.length()) == 0)) {
-			return StringUtils.EMPTY;
+	public static String clearHTMLTag(String inputString, int stringLenth) {
+		if (inputString == null) {
+			return null;
 		}
-		StringBuilder buffer = new StringBuilder(len + (len >> 2));
-		for (int i = 0; i < len; i++) {
-			char c = text.charAt(i);
-			if (c < 64) {
-				buffer.append(array[c]);
-			} else {
-				buffer.append(c);
-			}
+
+		Pattern p_script;
+		Matcher m_script;
+		Pattern p_style;
+		Matcher m_style;
+		Pattern p_html;
+		Matcher m_html;
+		try {
+			//定义script的正则表达式{或<script[^>]*?>[\\s\\S]*?<\\/script>
+			String regEx_script = "<[\\s]*?script[^>]*?>[\\s\\S]*?<[\\s]*?/[\\s]*?script[\\s]*?>";
+			//定义style的正则表达式{或<style[^>]*?>[\\s\\S]*?<\\/style>
+			String regEx_style = "<[\\s]*?style[^>]*?>[\\s\\S]*?<[\\s]*?/[\\s]*?style[\\s]*?>";
+			String regEx_html = "<[^>]+>"; // 定义HTML标签的正则表达式
+			p_script = Pattern.compile(regEx_script, Pattern.CASE_INSENSITIVE);
+			m_script = p_script.matcher(inputString);
+			inputString = m_script.replaceAll(""); // 过滤script标签
+			p_style = Pattern.compile(regEx_style, Pattern.CASE_INSENSITIVE);
+			m_style = p_style.matcher(inputString);
+			inputString = m_style.replaceAll(""); // 过滤style标签
+			p_html = Pattern.compile(regEx_html, Pattern.CASE_INSENSITIVE);
+			m_html = p_html.matcher(inputString);
+			inputString = m_html.replaceAll(""); // 过滤html标签
+		} catch (Exception e) {
 		}
-		return buffer.toString();
+		if (inputString.length() > stringLenth) {
+			return inputString.substring(0, stringLenth);// 返回文本字符串
+		} else {
+			return inputString;// 返回文本字符串
+		}
 	}
+
 
 }

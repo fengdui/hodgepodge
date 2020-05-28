@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.fengdui.wheel.regex;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,10 +8,10 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 /**
-
  * @date 2015年1月7日
  */
 public class IdCardUtils  {
+
 	  /** 中国公民身份证号码最小长度。 */
     public static final int CHINA_ID_MIN_LENGTH = 15;
  

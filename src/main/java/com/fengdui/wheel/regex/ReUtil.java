@@ -13,9 +13,6 @@ import org.springframework.util.CollectionUtils;
 
 public class ReUtil {
 
-	/** 正则表达式匹配中文 */
-	public final static String RE_CHINESE = "[\u4E00-\u9FFF]";
-
 	/** 分组 */
 	public final static Pattern GROUP_VAR = Pattern.compile("\\$(\\d+)");
 
