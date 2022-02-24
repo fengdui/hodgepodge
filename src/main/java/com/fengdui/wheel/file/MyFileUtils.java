@@ -21,8 +21,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class MyFileUtils {
 
-    public MyFileUtils() throws FileNotFoundException {
-    }
+    public MyFileUtils() throws FileNotFoundException {}
 
     public void fileChannel() throws IOException {
         byte[] data = new byte[4096];
@@ -40,6 +39,12 @@ public class MyFileUtils {
         fileChannel.read(buffer);
     }
 
+    /**
+     * 顺序读写是优先分配一块文件空间，然后后续内容追加到对应空间内。
+     *
+     * 在使用顺序IO进行文件读写时候，需要知道上次写入的地方，所以需要维护一个索引或者轮询获得一个没有写入位置。
+     * @throws IOException
+     */
     public void mappedByteBuffer() throws IOException {
         FileChannel fileChannel = new RandomAccessFile(new File("db.data"), "rw").getChannel();
         MappedByteBuffer mappedByteBuffer = fileChannel.map(
