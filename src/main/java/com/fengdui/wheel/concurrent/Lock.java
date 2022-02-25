@@ -54,4 +54,27 @@ public class Lock {
             return false;
         }
     }
+
+    public void unlock(String key) {
+        try {
+            long current = System.currentTimeMillis();
+            RedisScript<Long> script = RedisScript.of(
+                    "local exists = redis.call('hget', KEYS[1], ARGV[1]); " +
+                            "if (exists == nil or exists == 0) then " +
+                            "return 0; " +
+                            "end; " +
+                            "local counter = redis.call('hincrby', KEYS[1], ARGV[1], -1); " +
+                            "if (counter <= 0) then " +
+                            "redis.call('del', KEYS[1]); " +
+                            "return 0; " +
+                            "else " +
+                            "return counter; " +
+                            "end; " +
+                            "return nil;", Long.class);
+            redisTemplate.execute(script, Lists.newArrayList(key), new Object[]{ Thread.currentThread().getId()});
+            log.info("Release lock key - {} by thread - {} cost {}.", key, Thread.currentThread().getId(), System.currentTimeMillis() - current);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }
