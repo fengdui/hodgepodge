@@ -50,4 +50,4 @@ simplestatementhandler,preparedstatementhandler,callablestatementhandler
 可以对某个方法进行装饰，以增强功能，比如java中的流
 18 桥接模式
 19 组合模式
-20 享元模式
+20 享元模式 享元模式和对象池的区别 享元对象不可相互替代

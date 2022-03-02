@@ -1,0 +1,5 @@
+jstack 14 | grep "java.lang.Thread.State" | sort -nr | uniq -c
+对状态有一个整体的把握，如果WAITING之类的特别多，多半是有问题
+
+ygc 2s/次 如果远高于 说明很闲 10ms 几十毫秒超过100毫秒需要排查
+old GC 单独回收old区 只有cms 不超过1天一次
