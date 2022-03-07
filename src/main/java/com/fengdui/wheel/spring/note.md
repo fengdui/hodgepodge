@@ -8,4 +8,5 @@
 6. @Autowired、@Value、@Inject注解的处理逻辑是在AutowiredAnnotationBeanPostProcessor。
 7. @Required注解的处理逻辑是在RequiredAnnotationBeanPostProcessor。
 8. @PostConstruct、@PreDestroy、@Resource注解的处理逻辑是在CommonAnnotationBeanPostProcessor。
-9 .jpa相关注解PersistenceAnnotationBeanPostProcessor。
+9. jpa相关注解PersistenceAnnotationBeanPostProcessor。
+10. @ComponentScan注解在ComponentScanAnnotationParser.parse。
