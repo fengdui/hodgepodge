@@ -1,0 +1,3 @@
+假设一个client连接到一个最新的follower上，它的一次read读取了最新的数据，然后client由于某种原因，需要重新连接一个zookeeper节点，恰好这次连接到一个stale状态的follower，那么这个client再一次read岂不是读取了旧的数据，造成了历史的倒退？
+
+还好zookeeper还是处理了这种情况，文中指出，首先client记录了自己已经读取的最大的zxid，当client重新连接server的时候，server发现client的zxid比自己大，是不会和client重新建立session的。
