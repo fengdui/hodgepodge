@@ -1,4 +1,4 @@
-package com.fengdui.wheel.jvm;
+package com.fengdui.structure.jvm;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
