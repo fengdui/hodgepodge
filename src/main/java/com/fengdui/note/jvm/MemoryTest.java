@@ -1,4 +1,4 @@
-package com.fengdui.structure.jvm;
+package com.fengdui.note.jvm;
 
 import java.io.File;
 import java.io.FileInputStream;

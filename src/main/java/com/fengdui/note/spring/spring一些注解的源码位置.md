@@ -22,3 +22,16 @@
   * 然后ServletInvocableHandlerMethod #getMethodArgumentValues创建请求的参数（就是给你自动生成controller里面的参数），
   * 遍历HandlerMethodArgumentResolverComposite里面的Resolvers ，
   * 如果有一个HandlerMethodArgumentResolver#supportsParameter支持，使用该resolves#resolveArgument得到结果
+  * controller的流程大致是
+  * dispatcherServlet => RequestMappingHandlerAdapter => invokeHandlerMethod=>ServletInvocableHandlerMethod
+* @RequestParam 位于RequestParamMethodArgumentResolver和RequestParamMapMethodArgumentResolver
+* @PathVariable 位于PathVariableMethodArgumentResolver和PathVariableMapMethodArgumentResolver
+* @MatrixVariable 位于MatrixVariableMethodArgumentResolver和MatrixVariableMapMethodArgumentResolver
+* @ModelAttribute ServletModelAttributeMethodProcessor
+* @RequestBody @ResponseBody RequestResponseBodyMethodProcessor
+* @RequestPart RequestPartMethodArgumentResolver
+* @RequestHeader RequestHeaderMethodArgumentResolver和RequestHeaderMapMethodArgumentResolver
+* @CookieValue ServletCookieValueMethodArgumentResolver
+* @Value ExpressionValueMethodArgumentResolver
+* @SessionAttribute SessionAttributeMethodArgumentResolver
+* @RequestAttribute RequestAttributeMethodArgumentResolver
