@@ -1,7 +1,19 @@
+* springboot默认使用的容器是AnnotationConfigEmbeddedWebApplicationContext
+* 改容器内部使用了AnnotatedBeanDefinitionReader和ClassPathBeanDefinitionScanner
+* AnnotatedBeanDefinitionReader在构造函数中注册了很多BeanFactoryPostProcessor
+* AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
+* 其中就有一个ConfigurationClassPostProcessor
+* 由这个ConfigurationClassPostProcessor处理springboot的启动类的@Configuration注解
+* 大致流程postProcessBeanDefinitionRegistry=》processConfigBeanDefinitions=》parse=》processConfigurationClass
+* @PropertySources @ComponentScans@Import @ImportResource@Bean 等注解都在
+* doProcessConfigurationClass方法中处理
+* 再回到之前的AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);发现里面还注册了其他的处理器，
+* AutowiredAnnotationBeanPostProcessor就是其中一个 这个注解处理@Autowired和@Value注解
+* postProcessBeanDefinitionRegistry 方法中解析完bean的信息之后， 会使用ConfigurationClassBeanDefinitionReader注册bean。
 * @controller方法调用的源码是在ServletInvocableHandlerMethod。
 * @EnableAutoConfiguration自动配置是从classpath中搜寻所有的META-INF/spring.factories配置文件， 
-  并将其中org.springframework.boot.autoconfigure.EnableutoConfiguration对应的配置项通过反射
-  实例化为对应的标注了@Configuration的JavaConfig形式的IoC容器配置类，然后加载到IoC容器。
+* 并将其中org.springframework.boot.autoconfigure.EnableutoConfiguration对应的配置项通过反射
+* 实例化为对应的标注了@Configuration的JavaConfig形式的IoC容器配置类，然后加载到IoC容器。
 * AnnotationConfigUtils.registerAnnotationConfigProcessors 注册了@Autowired、@Value、@Inject等注解的processor。 
 * @Configuration注解的处理逻辑是在ConfigurationClassPostProcessor。
 * @Autowired、@Value、@Inject注解的处理逻辑是在AutowiredAnnotationBeanPostProcessor。
