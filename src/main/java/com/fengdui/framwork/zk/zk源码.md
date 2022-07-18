@@ -54,3 +54,26 @@ while ((self.getPeerState() == ServerState.LOOKING) &&
 * 2 如果这个Notification的逻辑时钟大于当前的逻辑时钟
   * 不处理
 * 接下来会把这个Notification放到recvsethashmap中，
+
+# zookeeper请求处理链
+
+ ![](../../../../../resources/pic/zk_processor.png)
+* leader
+* ProposalRequestProcessor
+* 他有两个后续的处理器，CommitProcessor（默认）和syncProcessor
+* 如果是LearnerSyncRequest就直接处理掉
+* 否则先让commitProcessor处理，如果是事务请求，还要提议，集群投票，然后再让syncProcessor处理
+* 也就是说，“经过了syncProcessor”处理的请求一定经过了"commitProcessor"的处理
+
+* SyncRequestProcessor
+* 记录事务日志 请求转发至下一processor
+
+* AckRequestProcessor
+* 是leader端的处理器
+* 负责在SyncRequestProcessor完成事务日志记录后，向Proposal的投票收集器发送ACK反馈，以通知投票收集器当前服务器已经完成了对该Proposal的事务日志记录。本质是调用leader.processAck方法，这个方法会将确认结果扔往
+
+* CommitProcessor
+* 事务提交处理器。对于非事务请求，该处理器会直接将其交付给下一级处理器处理；对于事务请求，其会等待集群内针对Proposal的投票直到该Proposal可被提交，利用CommitProcessor，每个服务器都可以很好地控制对事务请求的顺序处理。
+
+* ToBeAppliedRequestProcessor
+* 除了CommitProcessor过来的请求，还会处理AckRequestProcessor 中leadert扔往oBeApplied队列的数据
