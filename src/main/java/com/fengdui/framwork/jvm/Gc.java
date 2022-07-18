@@ -1,4 +1,4 @@
-package com.fengdui.note.jvm;
+package com.fengdui.framwork.jvm;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;

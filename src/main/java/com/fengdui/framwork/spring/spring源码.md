@@ -28,3 +28,35 @@
   * invocation = new ReflectiveMethodInvocation(proxy, target, method, args, targetClass, chain);
   * // Proceed to the joinpoint through the interceptor chain.
   * retVal = invocation.proceed();
+
+# spring生命周期源码
+* populateBean填充属性
+* BeanNameAware和BeanFactoryAware
+* 源码位于doCreateBean => AbstractAutowireCapableBeanFactory#initializeBean#invokeAwareMethods方法
+* invokeAwareMethods方法
+```
+private void invokeAwareMethods(final String beanName, final Object bean) {
+  if (bean instanceof Aware) {
+    if (bean instanceof BeanNameAware) {
+      ((BeanNameAware) bean).setBeanName(beanName);
+    }
+    if (bean instanceof BeanClassLoaderAware) {
+      ((BeanClassLoaderAware) bean).setBeanClassLoader(getBeanClassLoader());
+    }
+    if (bean instanceof BeanFactoryAware) {
+      ((BeanFactoryAware) bean).setBeanFactory(AbstractAutowireCapableBeanFactory.this);
+    }
+  }
+}
+```
+* 调用beanPostProcessor前置处理
+* beanProcessor.postProcessBeforeInitialization
+* 位于AbstractAutowireCapableBeanFactory#initializeBean#applyBeanPostProcessorsBeforeInitialization
+
+* afterPropertiesSet
+* initMethod
+* 位于AbstractAutowireCapableBeanFactory#initializeBean#invokeInitMethods
+
+* 调用beanPostProcessor后置处理
+* applyBeanPostProcessorsAfterInitialization
+* 位于AbstractAutowireCapableBeanFactory#initializeBean#applyBeanPostProcessorsAfterInitialization
