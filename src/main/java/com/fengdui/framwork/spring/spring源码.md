@@ -151,3 +151,6 @@ private void invokeAwareMethods(final String beanName, final Object bean) {
 * registerListeners()
 * 将硬编码的事件监听器(在applicationListeners中)，以及xml配置的事件监听器，以及earlyApplicationEvents中的事件放到事件广播器applicationEventMulticaster。
 * earlyApplicationEvents作用是当你调用publishEvent方法的时候，事件广播器还没有初始化的时候，会先放到publishEvent。
+
+
+# 自定义BeanFactoryPostProcessor以javaconfig方式配置要加上static。
