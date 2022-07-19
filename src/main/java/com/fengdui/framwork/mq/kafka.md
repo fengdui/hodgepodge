@@ -45,3 +45,11 @@
 * 唤醒sender线程，由sender线程发送累加器中缓存的消息
 * 如果返回的结果if (result.batchIsFull || result.newBatchCreated) {，则唤醒sender线程
 * 返回RecordAppendResult中的future
+
+# AR ISR
+* AR Assigned Replicas 所有副本
+* ISR是AR中的一个子集，由leader维护ISR列表，follower从leader同步数据有一些延迟（包括延迟时间replica.lag.time.max.ms和延迟条数replica.lag.max.messages两个维度, 当前最新的版本0.10.x中只支持replica.lag.time.max.ms这个维度），任意一个超过阈值都会把follower剔除出ISR,存入OSR（Outof-Sync Replicas）列表，新加入的follower也会先存放在OSR中。
+* AR=ISR+OSR。
+
+* HW HighWatermark consumer能够看到的此partition的位置 取一个partition对应的ISR中最小的LEO作为HW，consumer最多只能消费到HW所在的位置
+* LEO LogEndOffset的缩写，表示每个partition的log最后一条Message的位置
