@@ -57,7 +57,7 @@ while ((self.getPeerState() == ServerState.LOOKING) &&
 
 # zookeeper请求处理链
 
- ![](../../../../../resources/pic/zk_processor.png)
+ ![](../../../../../resources/pic/zk/zk_processor.png)
 * leader
 * ProposalRequestProcessor
 * 他有两个后续的处理器，CommitProcessor（默认）和syncProcessor
