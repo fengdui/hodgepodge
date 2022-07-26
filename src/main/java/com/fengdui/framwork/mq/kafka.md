@@ -63,12 +63,12 @@
 
 ## 1.什么时候HW追上LEO, 使得消费者能够消费到对应的数据，如7 8 9 10。
 * 当所有ISR集合中的分区都同步到了7, leader才会将HW设置到7的offset, 当ISR中只有leader这个主分区时, 意味着不需要副本的同步就能直接将HW往后移动, 此时如果主分区异常， 选择
-* Kafka的复制机制既不是完全的同步复制，也不是单纯的异步复制。当request.required.acks=1就是有多个从的异步复制, request.required.acks=-1 并且min.insync.replicas>=2相当于同步复制, 起码有一主一从。
+* Kafka的复制机制既不是完全的同步复制，也不是单纯的异步复制。当request.required.acks=1就是有多个从的异步复制, request.required.acks=-1 并且min.insync.replicas>=2相当于同步复制, 起码有一主一从。
 * 本质上也是cap中, ap和cp的权衡。
 ## 2.request.required.acks=-1  min.insync.replicas = 2 ISR集合中少于2会怎么样？
 * 如果ISR中的副本数少于min.insync.replicas配置的数量时，客户端进行写操作会返回异常：org.apache.kafka.common.errors.NotEnoughReplicasExceptoin: Messages are rejected since there are fewer in-sync replicas than required。生产者需要使用同步的api, 对该异常进行处理, 如反馈系统异常给上游。但此时假如ISR集合中只存在一个分区的话还是可以read的。
 ## 3.leader crash
-* leader crash之后，假如unclean.leader.election.enable=false 必须从ISR集合中选择作为新的leader, 如果配合request.required.acks=-1 min.insync.replicas>=2, 则不会数据丢失。
+* leader crash之后，假如unclean.leader.election.enable=false 必须从ISR集合中选择作为新的leader, 如果配合request.required.acks=-1 min.insync.replicas>=2, 则不会数据丢失。
 ## 4.request.required.acks=-1  min.insync.replicas = 2 假如主分区写入数据之后 副本分区没来得及同步或者同步一半主分区就crash
 
 ![](../../../../../resources/pic/kafka/kafka2.png)
