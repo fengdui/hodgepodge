@@ -3,7 +3,15 @@ package com.fengdui.wheel.http;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
+import java.util.Enumeration;
 
+import com.alibaba.fastjson.JSON;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -13,6 +21,12 @@ import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
 import org.apache.commons.httpclient.methods.multipart.Part;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -20,8 +34,10 @@ import org.apache.commons.lang3.StringUtils;
  * Http 请求工具
  * 太旧了
  */
+@Slf4j
 public class HttpTools {
 
+	public static final okhttp3.MediaType JSONTYPE = okhttp3.MediaType.parse("application/json; charset=utf-8");
 
 	/**
 	 * @param uri
@@ -73,6 +89,54 @@ public class HttpTools {
 		} finally {
 			method.releaseConnection();
 			IOUtils.closeQuietly(br);
+		}
+	}
+	@Data
+	public static class RouteReq implements Serializable {
+		private static final long serialVersionUID = 7536493182183690521L;
+
+		@NotNull(message = "业务body参数不能为空")
+		private String body;
+	}
+
+	@PostMapping("/route")
+	public String doRoute(@Valid @RequestBody RouteReq routeReq, HttpServletRequest req) throws Exception {
+
+		String apiUrl = req.getHeader("apiUrl");
+		if(StringUtils.isBlank(apiUrl)){
+			throw new RuntimeException("apiUrl不能为空!");
+		}
+		//校验body数据的合法性  TODO
+		return this.forwardPost(req,apiUrl,routeReq.getBody());
+	}
+
+	/** @param req
+     * @param forwardUrl
+     * @param paramJsonStr
+     * @return
+	 **/
+	private String forwardPost(HttpServletRequest req,String forwardUrl,String paramJsonStr) throws Exception {
+
+		okhttp3.RequestBody paramBody = okhttp3.RequestBody.create(JSONTYPE, paramJsonStr);
+		OkHttpClient okHttpClient = new OkHttpClient();
+		Request.Builder builder = new Request.Builder();
+		builder.url(forwardUrl);
+		builder.post(paramBody);
+		Enumeration e = req.getHeaderNames();
+		while(e.hasMoreElements()){
+			String name = (String) e.nextElement();
+			String value = req.getHeader(name);
+			System.out.println(name+" = "+value);
+			builder.addHeader(name, value);
+
+		}
+		Request request = builder.build();
+		log.info("【通道接口】forwardUrl:" + forwardUrl + "; header:" + JSON.toJSONString(request.headers()) + "; dto:" + paramJsonStr);
+		Response response = okHttpClient.newCall(request).execute();
+		if (response.isSuccessful()) {
+			return response.body().string();
+		} else {
+			throw new IOException("Unexpected code " + response);
 		}
 	}
 }

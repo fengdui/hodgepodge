@@ -69,8 +69,4 @@ public class WeatherUtil {
 		return getWeatherInfo(request);
 	}
 
-	public static void main(String[] args) {
-
-	}
-
 }
