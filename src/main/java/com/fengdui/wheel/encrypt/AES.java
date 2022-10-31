@@ -94,4 +94,16 @@ public class AES {
   public static String genarateRandomKeyWithBase64() throws UnsupportedEncodingException {
     return CommonsCodec.base64Encode(genarateRandomKey());
   }
+
+  public static void main(String[] args) {
+    String s1 = "{\"phoneNumber\":\"18805716141\"}";
+    String s2 = encryptToBase64(s1,"OrFwiUofe8kTQmH2C");
+    String s3 = decryptFromBase64(s2,"OrFwiUofe8kTQmH2C");
+    String s4 = "CQ5Q0LYSQNZuGomIO2VizntBxLbCkqsrhMzfwbiqgt4NbP/T50Irx6jQauSNfVvV1RUWEJkhwkuIM1X2nb8z2VgNlak5o2n2guREFsGKOBuWATgod40jnRBq/4zYn7Z0XljPpKOUVNtRQN+Q7dCi/A==";
+    System.out.println(s1);
+    System.out.println(s2);
+    System.out.println(s3);
+    System.out.println(decryptFromBase64(s4, "OrFwiUofe8kTQmH2C"));
+
+  }
 }
