@@ -1,4 +1,4 @@
-package com.fengdui.wheel.concurrent;
+package com.fengdui.wheel.lock;
 
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
