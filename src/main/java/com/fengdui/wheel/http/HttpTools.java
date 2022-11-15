@@ -2,9 +2,16 @@ package com.fengdui.wheel.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
+import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
@@ -21,6 +28,22 @@ import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
 import org.apache.commons.httpclient.methods.multipart.Part;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.Consts;
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.HttpClientUtils;
+import org.apache.http.config.ConnectionConfig;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -137,6 +160,105 @@ public class HttpTools {
 			return response.body().string();
 		} else {
 			throw new IOException("Unexpected code " + response);
+		}
+	}
+
+	private static CloseableHttpClient httpClient = null;
+
+	static {
+		RequestConfig requestConfig = RequestConfig.custom()
+				.setSocketTimeout(50000)
+				.setConnectTimeout(50000)
+				.setConnectionRequestTimeout(50000).build();
+		PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
+		connManager.setDefaultConnectionConfig(ConnectionConfig.custom().setCharset(Consts.UTF_8).build());
+		connManager.setDefaultMaxPerRoute(10); // 设置最大路由
+		connManager.setMaxTotal(50);          // 设置最大链接数
+
+		httpClient = HttpClients.custom()
+				.setConnectionManager(connManager)
+				.setDefaultRequestConfig(requestConfig).build();
+//        httpClient = HttpClients.createDefault(); // 底层默认使用 PoolingHttpClientConnectionManager
+	}
+
+	public static String postForm(String url, Map<String, String> params, String charsetName) throws IOException {
+		return HttpTools.postForm(httpClient, url, params, charsetName);
+	}
+
+	public static String postForm(CloseableHttpClient httpClient, String url, Map<String, String> params, String charsetName) throws IOException {
+		HttpPost httpPost = new HttpPost(url);
+		CloseableHttpResponse response = null;
+		try {
+			List<NameValuePair> formParams = new ArrayList<NameValuePair>();
+			for (String name : params.keySet()) {
+				formParams.add(new BasicNameValuePair(name, params.get(name)));
+			}
+			if (charsetName == null) {
+				charsetName = "UTF-8";
+			}
+			Charset charset = Charset.forName(charsetName);
+			HttpEntity reqEntity = new UrlEncodedFormEntity(formParams, charset);
+			httpPost.setEntity(reqEntity);
+			response = httpClient.execute(httpPost);
+			return EntityUtils.toString(response.getEntity(), charset);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HttpClientUtils.closeQuietly(response);
+		}
+	}
+
+	public static String postJson(String url, String json) throws IOException {
+		return HttpTools.postJson(httpClient, url, json);
+	}
+
+	public static String postJson(HttpPost httpPost, String json) throws IOException {
+		CloseableHttpResponse response = null;
+		try {
+			StringEntity reqEntity = new StringEntity(json, Consts.UTF_8);
+			reqEntity.setContentType("application/json; charset=UTF-8"); // 设置为 json 数据
+			httpPost.setEntity(reqEntity);
+			response = httpClient.execute(httpPost);
+			return EntityUtils.toString(response.getEntity(), Consts.UTF_8);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HttpClientUtils.closeQuietly(response);
+		}
+	}
+
+	public static String postJson(CloseableHttpClient httpClient, String url, String json) throws IOException {
+		HttpPost httpPost = new HttpPost(url);
+		CloseableHttpResponse response = null;
+		try {
+			StringEntity reqEntity = new StringEntity(json, Consts.UTF_8);
+			reqEntity.setContentType("application/json; charset=UTF-8"); // 设置为 json 数据
+			httpPost.setEntity(reqEntity);
+
+			response = httpClient.execute(httpPost);
+			return EntityUtils.toString(response.getEntity(), Consts.UTF_8);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HttpClientUtils.closeQuietly(response);
+		}
+	}
+
+
+	public static String get(String url, String json) {
+		return HttpTools.get(url, json);
+	}
+
+	public static String get(CloseableHttpClient httpClient, String url) throws IOException {
+		HttpGet httpGet = new HttpGet(url);
+		CloseableHttpResponse response = null;
+		try {
+			response = httpClient.execute(httpGet);
+			return EntityUtils.toString(response.getEntity(), Consts.UTF_8);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HttpClientUtils.closeQuietly(response);
 		}
 	}
 }
