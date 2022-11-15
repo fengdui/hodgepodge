@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2022/2/24 4:43 下午
  */
 @Slf4j
-public class Lock {
+public class RedisLock {
     private RedisTemplate<String, String> redisTemplate;
     public boolean lock(String key, long leaseTime) {
         try {
