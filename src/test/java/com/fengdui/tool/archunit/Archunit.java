@@ -1,4 +1,4 @@
-package com.fengdui.tool.archunit;
+package com.fengdui.framework.archunit;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;

@@ -1,4 +1,4 @@
-package com.fengdui.tool;
+package com.fengdui.framework;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
