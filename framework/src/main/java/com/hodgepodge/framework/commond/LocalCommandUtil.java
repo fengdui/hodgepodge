@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.commond;
+package com.hodgepodge.framework.commond;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

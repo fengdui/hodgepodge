@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.regex;
+package com.hodgepodge.framework.regex;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

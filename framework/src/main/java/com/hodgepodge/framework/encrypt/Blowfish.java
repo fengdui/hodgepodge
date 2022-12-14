@@ -12,7 +12,7 @@
  * Released under the Apache 2.0 license.
  */
 
-package main.java.com.hodgepodge.framework.encrypt;
+package com.hodgepodge.framework.encrypt;
 
 import lombok.extern.log4j.Log4j;
 

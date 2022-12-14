@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework;
+package com.hodgepodge.framework;
 
 import java.io.IOException;
 import java.nio.file.*;

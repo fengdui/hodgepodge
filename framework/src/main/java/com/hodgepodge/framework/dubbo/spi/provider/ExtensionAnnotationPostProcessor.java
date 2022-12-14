@@ -1,6 +1,6 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.provider;
+package com.hodgepodge.framework.dubbo.spi.provider;
 
-import main.java.com.hodgepodge.framework.dubbo.spi.annotation.Extension;
+import com.hodgepodge.framework.dubbo.spi.annotation.Extension;
 import com.hodgepodge.framwork.dubbo.spi.call.WrapperGeneratorComposite;
 import com.hodgepodge.framwork.dubbo.spi.common.SpiTypeEnum;
 import com.hodgepodge.framwork.dubbo.spi.provider.dubbo.DubboServiceExporter;

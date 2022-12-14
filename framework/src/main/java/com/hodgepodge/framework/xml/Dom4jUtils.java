@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.xml;
+package com.hodgepodge.framework.xml;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;

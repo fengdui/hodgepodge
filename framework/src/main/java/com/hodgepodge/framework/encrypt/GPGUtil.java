@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.encrypt;
+package com.hodgepodge.framework.encrypt;
 
 import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.bcpg.ArmoredInputStream;

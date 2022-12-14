@@ -1,6 +1,6 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.router;
+package com.hodgepodge.framework.dubbo.spi.router;
 
-import main.java.com.hodgepodge.framework.dubbo.spi.annotation.Extension;
+import com.hodgepodge.framework.dubbo.spi.annotation.Extension;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

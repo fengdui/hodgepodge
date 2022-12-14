@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.id;
+package com.hodgepodge.framework.id;
 
 public class SimpleIdWorkerFactory {
     private static long workId;

@@ -6,5 +6,5 @@
  * @author
  * @since 2020/5/21 3:53 下午
  */
-package main.java.com.hodgepodge.framework.mail;
+package com.hodgepodge.framework.mail;
 

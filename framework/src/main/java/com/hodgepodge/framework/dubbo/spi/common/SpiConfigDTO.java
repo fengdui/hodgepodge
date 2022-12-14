@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.common;
+package com.hodgepodge.framework.dubbo.spi.common;
 
 import lombok.Data;
 import org.springframework.util.StringUtils;

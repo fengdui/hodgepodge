@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.image.im4java;
+package com.hodgepodge.framework.image.im4java;
 
 import org.im4java.core.GMOperation;
 import org.im4java.core.GraphicsMagickCmd;

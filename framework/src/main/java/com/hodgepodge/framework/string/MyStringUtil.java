@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.string;
+package com.hodgepodge.framework.string;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;

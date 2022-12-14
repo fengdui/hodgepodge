@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.mq;
+package com.hodgepodge.framework.mq;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.redis.core.RedisTemplate;

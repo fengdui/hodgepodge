@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.call.dubbo;
+package com.hodgepodge.framework.dubbo.spi.call.dubbo;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ConsumerConfig;
@@ -6,11 +6,11 @@ import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.utils.ReferenceConfigCache;
 import com.alibaba.dubbo.rpc.service.GenericService;
-import main.java.com.hodgepodge.framework.dubbo.spi.call.WrapperGenerator;
-import main.java.com.hodgepodge.framework.dubbo.spi.common.SpiException;
-import main.java.com.hodgepodge.framework.dubbo.spi.common.SpiTypeEnum;
-import main.java.com.hodgepodge.framework.dubbo.spi.common.SpiConfigDTO;
-import main.java.com.hodgepodge.framework.dubbo.spi.utils.ApplicationContextHolder;
+import com.hodgepodge.framework.dubbo.spi.call.WrapperGenerator;
+import com.hodgepodge.framework.dubbo.spi.common.SpiException;
+import com.hodgepodge.framework.dubbo.spi.common.SpiTypeEnum;
+import com.hodgepodge.framework.dubbo.spi.common.SpiConfigDTO;
+import com.hodgepodge.framework.dubbo.spi.utils.ApplicationContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.context.ApplicationContext;

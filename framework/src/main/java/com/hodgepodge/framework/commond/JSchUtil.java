@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.commond;
+package com.hodgepodge.framework.commond;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;

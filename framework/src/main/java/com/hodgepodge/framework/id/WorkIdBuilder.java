@@ -1,6 +1,6 @@
-package main.java.com.hodgepodge.framework.id;
+package com.hodgepodge.framework.id;
 
-import main.java.com.hodgepodge.framework.lock.DistributedLock;
+import com.hodgepodge.framework.lock.DistributedLock;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.TreeCache;

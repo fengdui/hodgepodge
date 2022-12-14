@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.ruleEngine;
+package com.hodgepodge.framework.ruleEngine;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

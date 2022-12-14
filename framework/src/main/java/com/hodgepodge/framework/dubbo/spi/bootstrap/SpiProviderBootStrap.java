@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.bootstrap;
+package com.hodgepodge.framework.dubbo.spi.bootstrap;
 
 import com.hodgepodge.framwork.dubbo.spi.provider.ExtensionAnnotationPostProcessor;
 import com.hodgepodge.framwork.dubbo.spi.utils.ApplicationContextHolder;

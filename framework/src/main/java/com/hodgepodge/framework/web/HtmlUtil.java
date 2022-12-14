@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.web;
+package com.hodgepodge.framework.web;
 
 import org.apache.commons.lang3.StringUtils;
 

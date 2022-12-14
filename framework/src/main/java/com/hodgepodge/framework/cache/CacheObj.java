@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.cache;
+package com.hodgepodge.framework.cache;
 
 public class CacheObj<K, V> {
 

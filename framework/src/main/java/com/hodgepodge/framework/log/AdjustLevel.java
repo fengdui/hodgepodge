@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.log;
+package com.hodgepodge.framework.log;
 
 import ch.qos.logback.classic.LoggerContext;
 import org.apache.commons.lang3.StringUtils;

@@ -1,9 +1,9 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.call;
+package com.hodgepodge.framework.dubbo.spi.call;
 
 import com.hodgepodge.framwork.dubbo.spi.call.dubbo.DubboWrapperGenerator;
 import com.hodgepodge.framwork.dubbo.spi.call.local.LocalWrapperGenerator;
-import main.java.com.hodgepodge.framework.dubbo.spi.common.SpiException;
-import main.java.com.hodgepodge.framework.dubbo.spi.common.SpiConfigDTO;
+import com.hodgepodge.framework.dubbo.spi.common.SpiException;
+import com.hodgepodge.framework.dubbo.spi.common.SpiConfigDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.ClassUtils;
 

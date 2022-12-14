@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.bootstrap;
+package com.hodgepodge.framework.dubbo.spi.bootstrap;
 import com.hodgepodge.framwork.dubbo.spi.router.SpiRouter;
 import org.springframework.beans.factory.FactoryBean;
 

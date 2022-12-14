@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.file;
+package com.hodgepodge.framework.file;
 
 import net.smacke.jaydio.DirectRandomAccessFile;
 import sun.misc.Unsafe;

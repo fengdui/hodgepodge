@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.regex;
+package com.hodgepodge.framework.regex;
 
 import com.google.common.collect.Sets;
 

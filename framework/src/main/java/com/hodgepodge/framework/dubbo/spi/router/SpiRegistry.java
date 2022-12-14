@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.router;
+package com.hodgepodge.framework.dubbo.spi.router;
 
 import com.hodgepodge.framwork.dubbo.spi.call.WrapperGeneratorComposite;
 import com.hodgepodge.framwork.dubbo.spi.common.SpiConfigDTO;

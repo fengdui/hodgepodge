@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.jvm;
+package com.hodgepodge.framework.jvm;
 
 import java.io.File;
 import java.io.FileInputStream;

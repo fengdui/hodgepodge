@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.image;
+package com.hodgepodge.framework.image;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;

@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.jvm;
+package com.hodgepodge.framework.jvm;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;

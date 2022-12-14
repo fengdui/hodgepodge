@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.encrypt;
+package com.hodgepodge.framework.encrypt;
 
 
 import org.slf4j.Logger;

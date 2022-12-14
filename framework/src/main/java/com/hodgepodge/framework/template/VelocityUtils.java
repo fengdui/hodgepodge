@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.template;
+package com.hodgepodge.framework.template;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;

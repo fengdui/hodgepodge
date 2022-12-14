@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.lock;
+package com.hodgepodge.framework.lock;
 
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;

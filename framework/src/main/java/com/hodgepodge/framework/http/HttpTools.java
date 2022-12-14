@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.http;
+package com.hodgepodge.framework.http;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;

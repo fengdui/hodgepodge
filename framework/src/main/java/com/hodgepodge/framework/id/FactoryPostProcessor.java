@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.id;
+package com.hodgepodge.framework.id;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

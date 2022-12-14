@@ -1,6 +1,7 @@
-package main.java.com.hodgepodge.framework.check;
+package com.hodgepodge.framework.check;
 
 import com.google.common.base.Preconditions;
+import lombok.SneakyThrows;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -23,6 +24,7 @@ public class MyCheckArgument {
         Objects.requireNonNull(null, String.format("aggregateContent is null,contentId=%s", 2));
     }
 
+    @SneakyThrows
     public <T> void validatorCheck(T obj) {
         Set<ConstraintViolation<T>> violations = VALIDATOR.validate(obj, new Class[0]);
         if (CollectionUtils.isNotEmpty(violations)) {

@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.http;
+package com.hodgepodge.framework.http;
 
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;

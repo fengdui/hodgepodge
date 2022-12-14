@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.annotation;
+package com.hodgepodge.framework.dubbo.spi.annotation;
 
 import com.hodgepodge.framwork.dubbo.spi.common.SpiTypeEnum;
 import org.springframework.stereotype.Component;

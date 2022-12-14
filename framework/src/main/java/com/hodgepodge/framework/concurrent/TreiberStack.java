@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.concurrent;
+package com.hodgepodge.framework.concurrent;
 
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.concurrent.atomic.AtomicReference;

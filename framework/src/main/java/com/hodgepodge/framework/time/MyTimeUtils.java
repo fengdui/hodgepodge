@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.time;
+package com.hodgepodge.framework.time;
 
 import java.time.Instant;
 import java.time.LocalDate;

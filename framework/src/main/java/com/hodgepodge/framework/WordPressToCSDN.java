@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework;
+package com.hodgepodge.framework;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

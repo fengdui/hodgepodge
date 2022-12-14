@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.utils;
+package com.hodgepodge.framework.dubbo.spi.utils;
 
 import lombok.Getter;
 import org.springframework.beans.BeansException;

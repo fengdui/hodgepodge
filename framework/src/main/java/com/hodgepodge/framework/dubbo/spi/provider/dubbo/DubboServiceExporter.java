@@ -1,7 +1,7 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.provider.dubbo;
+package com.hodgepodge.framework.dubbo.spi.provider.dubbo;
 
 import com.alibaba.dubbo.config.*;
-import main.java.com.hodgepodge.framework.dubbo.spi.annotation.Extension;
+import com.hodgepodge.framework.dubbo.spi.annotation.Extension;
 import com.hodgepodge.framwork.dubbo.spi.common.SpiException;
 import com.hodgepodge.framwork.dubbo.spi.utils.ApplicationContextHolder;
 import lombok.extern.slf4j.Slf4j;

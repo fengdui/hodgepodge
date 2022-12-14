@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.file;
+package com.hodgepodge.framework.file;
 
 import org.springframework.web.context.ContextLoader;
 

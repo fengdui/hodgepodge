@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.lock;
+package com.hodgepodge.framework.lock;
 
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;

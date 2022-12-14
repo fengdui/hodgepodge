@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.dubbo.spi;
+package com.hodgepodge.framework.dubbo.spi;
 
 public class BusinessContext {
     private static ThreadLocal<String> bizCode = new ThreadLocal<>();

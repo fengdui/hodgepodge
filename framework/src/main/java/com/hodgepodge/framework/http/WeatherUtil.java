@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.http;
+package com.hodgepodge.framework.http;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

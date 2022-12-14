@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.net;
+package com.hodgepodge.framework.net;
 
 
 import javax.servlet.http.HttpServletRequest;

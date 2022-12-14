@@ -1,6 +1,6 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.call;
+package com.hodgepodge.framework.dubbo.spi.call;
 
-import main.java.com.hodgepodge.framework.dubbo.spi.common.SpiConfigDTO;
+import com.hodgepodge.framework.dubbo.spi.common.SpiConfigDTO;
 
 public interface WrapperGenerator {
 

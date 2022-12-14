@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.hash;
+package com.hodgepodge.framework.hash;
 
 import java.util.Collection;
 import java.util.SortedMap;

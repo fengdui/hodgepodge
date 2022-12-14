@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.file;
+package com.hodgepodge.framework.file;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;

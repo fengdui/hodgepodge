@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.media;
+package com.hodgepodge.framework.media;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

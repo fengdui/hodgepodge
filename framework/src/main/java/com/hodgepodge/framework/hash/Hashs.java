@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.hash;
+package com.hodgepodge.framework.hash;
 
 /**
  * 推荐使用FNV1算法

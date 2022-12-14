@@ -1,5 +1,7 @@
-package main.java.com.hodgepodge.framework.generic;
+package com.hodgepodge.framework.generic;
 
+import lombok.SneakyThrows;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ResolvableType;
@@ -45,6 +47,12 @@ public class GenericUtils {
     public void springGeneric() throws NoSuchFieldException {
 
         ResolvableType.forField(getClass().getDeclaredField("myMap"));
+
+    }
+
+    @SneakyThrows
+    public Object invoke() {
+        return MethodUtils.invokeMethod(new MethodUtils(), true, "springGeneric", null);
 
     }
 }

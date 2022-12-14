@@ -1,6 +1,7 @@
-package main.java.com.hodgepodge.framework.generic;
+package com.hodgepodge.framework.generic;
 
 import org.springframework.core.DefaultParameterNameDiscoverer;
+import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
 
@@ -15,5 +16,9 @@ public class MyReflectUtils {
     //低于1.8时使用new LocalVariableTableParameterNameDiscoverer()来解析参数名
     public String[] getParameterNames(Method method) throws NoSuchMethodException {
         return new DefaultParameterNameDiscoverer().getParameterNames(String.class.getMethod("toString", null));
+    }
+
+    public void s() {
+        Method[] allDeclaredMethods = ReflectionUtils.getAllDeclaredMethods(MyReflectUtils.class);
     }
 }

@@ -1,12 +1,12 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.call.local;
+package com.hodgepodge.framework.dubbo.spi.call.local;
 
 
-import main.java.com.hodgepodge.framework.dubbo.spi.annotation.Extension;
-import main.java.com.hodgepodge.framework.dubbo.spi.call.WrapperGenerator;
-import main.java.com.hodgepodge.framework.dubbo.spi.common.SpiException;
-import main.java.com.hodgepodge.framework.dubbo.spi.common.SpiTypeEnum;
-import main.java.com.hodgepodge.framework.dubbo.spi.common.SpiConfigDTO;
-import main.java.com.hodgepodge.framework.dubbo.spi.utils.ApplicationContextHolder;
+import com.hodgepodge.framework.dubbo.spi.annotation.Extension;
+import com.hodgepodge.framework.dubbo.spi.call.WrapperGenerator;
+import com.hodgepodge.framework.dubbo.spi.common.SpiException;
+import com.hodgepodge.framework.dubbo.spi.common.SpiTypeEnum;
+import com.hodgepodge.framework.dubbo.spi.common.SpiConfigDTO;
+import com.hodgepodge.framework.dubbo.spi.utils.ApplicationContextHolder;
 import org.apache.commons.lang3.ClassUtils;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.context.ApplicationContext;

@@ -1,7 +1,7 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.router;
+package com.hodgepodge.framework.dubbo.spi.router;
 
-import main.java.com.hodgepodge.framework.dubbo.spi.BusinessContext;
-import main.java.com.hodgepodge.framework.dubbo.spi.annotation.Extension;
+import com.hodgepodge.framework.dubbo.spi.BusinessContext;
+import com.hodgepodge.framework.dubbo.spi.annotation.Extension;
 
 import java.lang.reflect.Method;
 import java.util.Optional;

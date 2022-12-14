@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.id;
+package com.hodgepodge.framework.id;
 
 import java.lang.reflect.Array;
 import java.util.Collection;

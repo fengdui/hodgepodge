@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.ratelimiter;
+package com.hodgepodge.framework.ratelimiter;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;

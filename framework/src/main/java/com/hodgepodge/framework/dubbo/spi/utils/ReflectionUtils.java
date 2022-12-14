@@ -1,7 +1,7 @@
-package main.java.com.hodgepodge.framework.dubbo.spi.utils;
+package com.hodgepodge.framework.dubbo.spi.utils;
 
 
-import main.java.com.hodgepodge.framework.dubbo.spi.annotation.SPI;
+import com.hodgepodge.framework.dubbo.spi.annotation.SPI;
 
 import java.util.ArrayList;
 import java.util.List;

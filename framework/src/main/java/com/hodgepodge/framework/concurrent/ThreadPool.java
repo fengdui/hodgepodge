@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.concurrent;
+package com.hodgepodge.framework.concurrent;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 

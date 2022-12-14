@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.mail;
+package com.hodgepodge.framework.mail;
 
 import lombok.Getter;
 import lombok.Setter;

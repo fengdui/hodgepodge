@@ -1,6 +1,6 @@
-package main.java.com.hodgepodge.framework.image.thumbnailator;
+package com.hodgepodge.framework.image.thumbnailator;
 
-import main.java.com.hodgepodge.framework.image.ImageMarkLogoByIcon;
+import com.hodgepodge.framework.image.ImageMarkLogoByIcon;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.io.FileUtils;
 

@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.java8;
+package com.hodgepodge.framework.java8;
 
 import com.google.common.collect.Maps;
 

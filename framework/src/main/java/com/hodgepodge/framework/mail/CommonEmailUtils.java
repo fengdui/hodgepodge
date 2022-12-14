@@ -1,4 +1,4 @@
-package main.java.com.hodgepodge.framework.mail;
+package com.hodgepodge.framework.mail;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.codec.DecoderException;
