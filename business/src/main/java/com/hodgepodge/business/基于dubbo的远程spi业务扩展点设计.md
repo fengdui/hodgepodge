@@ -214,7 +214,6 @@ public class SpiDubboRouter implements Router {
     }
 }
 ```
-* 采用此方案 领导觉得麻烦。。
 # 方案6 打算扩展url的机制，加上spi的标识 类似于dubbo新版的路由功能
 * 但是发现提供者虽然把标识附加到url上 注册到zk上 但是消费的时候没有用标识去找到对应的提供者
 * dubbo新版的路由功能的标识是写死去获取这个标识再去发现提供者的
