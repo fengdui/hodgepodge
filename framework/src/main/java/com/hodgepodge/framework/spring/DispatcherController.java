@@ -14,6 +14,10 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import java.util.List;
 
+
+/**
+ * 一个controller接收所有请求
+ */
 @Slf4j
 public abstract class DispatcherController {
     @Autowired

@@ -16,11 +16,6 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Set;
 
-/**
- * Created by taoli on 2022/10/14.
- * gitee : https://gitee.com/litao851025/lego
- * 编程就像玩 Lego
- */
 @Value
 public class ParamMethod {
     private static final ParameterNameDiscoverer PARAMETER_NAME_DISCOVERER = new DefaultParameterNameDiscoverer();

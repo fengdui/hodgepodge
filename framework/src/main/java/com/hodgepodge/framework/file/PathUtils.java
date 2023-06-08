@@ -148,4 +148,8 @@ public class PathUtils {
     public static String getWebRootPath() {
         return StringUtils.substringBeforeLast(getWebInfPath(), "/");
     }
+
+    public static void main(String[] args) {
+        System.out.println(getWebInfPath());
+    }
 }
