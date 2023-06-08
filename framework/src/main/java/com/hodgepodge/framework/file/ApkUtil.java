@@ -89,7 +89,7 @@ public class ApkUtil {
                     iconPath.append(File.separator);
                     iconPath.append(apkFile.getName().substring(0, apkFile.getName().lastIndexOf(".")) + "_" + density + "_" + iconPathOfZip.substring(iconPathOfZip.lastIndexOf("/") + 1));
                     File iconFile = new File(iconPath.toString());
-                    FileUtils.copyInputStreamToFile(is, iconFile);
+//                    FileUtils.copyInputStreamToFile(is, iconFile);
                     return iconFile;
                 } catch (Exception e) {
                     throw e;

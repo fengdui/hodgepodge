@@ -1,5 +1,5 @@
 package com.hodgepodge.framework.dubbo.spi.bootstrap;
-import com.hodgepodge.framwork.dubbo.spi.router.SpiRouter;
+import com.hodgepodge.framework.dubbo.spi.router.SpiRouter;
 import org.springframework.beans.factory.FactoryBean;
 
 import java.lang.reflect.InvocationHandler;

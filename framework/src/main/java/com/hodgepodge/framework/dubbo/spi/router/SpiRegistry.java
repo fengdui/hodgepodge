@@ -1,7 +1,7 @@
 package com.hodgepodge.framework.dubbo.spi.router;
 
-import com.hodgepodge.framwork.dubbo.spi.call.WrapperGeneratorComposite;
-import com.hodgepodge.framwork.dubbo.spi.common.SpiConfigDTO;
+import com.hodgepodge.framework.dubbo.spi.call.WrapperGeneratorComposite;
+import com.hodgepodge.framework.dubbo.spi.common.SpiConfigDTO;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

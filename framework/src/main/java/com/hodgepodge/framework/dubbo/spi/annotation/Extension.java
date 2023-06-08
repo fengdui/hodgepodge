@@ -1,6 +1,6 @@
 package com.hodgepodge.framework.dubbo.spi.annotation;
 
-import com.hodgepodge.framwork.dubbo.spi.common.SpiTypeEnum;
+import com.hodgepodge.framework.dubbo.spi.common.SpiTypeEnum;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.ElementType;
