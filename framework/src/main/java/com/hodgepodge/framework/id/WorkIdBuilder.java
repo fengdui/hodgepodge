@@ -8,6 +8,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
@@ -178,7 +179,7 @@ public class WorkIdBuilder {
     private static Set<Integer> getNodeIds(String nodePath) throws Exception {
         List<String> childPath = client.getChildren().forPath(nodePath);
         Set<Integer> nodeIdSet = new LinkedHashSet<>();
-        if (EmptyUtils.isNotBlank(childPath)) {
+        if (!CollectionUtils.isEmpty(childPath)) {
             for (String path : childPath) {
                 try {
                     nodeIdSet.add(Integer.valueOf(path));

@@ -1,5 +1,7 @@
 package com.hodgepodge.framework.id;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class SimpleIdWorkerFactory {
     private static long workId;
 
@@ -11,7 +13,7 @@ public class SimpleIdWorkerFactory {
     }
 
     public static final IdWorker getInstance(String zkAddress) {
-        if (EmptyUtils.isBlank(zkAddress)) {
+        if (StringUtils.isBlank(zkAddress)) {
             throw new RuntimeException("【snowflake】zookeeper地址不能为空");
         }
         zkAddress = zkAddress.replaceAll("\\s*", "").replace("zookeeper://", "")

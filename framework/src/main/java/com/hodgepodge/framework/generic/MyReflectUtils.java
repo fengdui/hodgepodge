@@ -1,6 +1,11 @@
 package com.hodgepodge.framework.generic;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import lombok.SneakyThrows;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.springframework.core.DefaultParameterNameDiscoverer;
+import org.springframework.core.ResolvableType;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
@@ -20,5 +25,29 @@ public class MyReflectUtils {
 
     public void s() {
         Method[] allDeclaredMethods = ReflectionUtils.getAllDeclaredMethods(MyReflectUtils.class);
+    }
+
+    public static class ResultBean<T> {
+        private T data;
+    }
+    public static class CanEncryptDataDTO {
+
+    }
+    public void a() {
+        String result = "null";
+        ResultBean<CanEncryptDataDTO> resultBean = JSON.parseObject(result, new TypeReference<ResultBean<CanEncryptDataDTO>>() {
+        });
+    }
+
+    @SneakyThrows
+    public Object invoke() {
+        return MethodUtils.invokeMethod(new MethodUtils(), true, "springGeneric", null);
+
+    }
+
+    public void springGeneric() throws NoSuchFieldException {
+
+        ResolvableType.forField(getClass().getDeclaredField("myMap"));
+
     }
 }
