@@ -49,6 +49,21 @@ dmesg
 或
 cat /var/log/message
 
+pidstat -dt -p 1567 3000 3
+dstat 1 10
+iostat -x 3 3
+lsof -p pid
+cat  /proc/1567/io
+df -h /capaa
+printf "%x\n" 22542
+jmap -heap 10765
+jinfo -flags 9656
+jmap -dump:format=b,file=/tmp/dump.hprof pid
+jmap -histo:live 10765 | more
+vmtool --action getInstances --className com.caucho.network.listen.TcpPort
+--limit 3 --expand 4
+
+
 lsof | grep deleted
 echo "" > access.log
 如何查看某个端口的连接情况
