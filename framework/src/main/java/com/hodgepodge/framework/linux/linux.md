@@ -77,4 +77,6 @@ ps H -eo pid,pcpu | sort -nk2 | tail
 最耗CPU的进程ID，对应的服务名是什么呢
 ps aux | fgrep pid    ll /proc/pid
 
+netstat -nap | grep '13306' | grep -v mysqld | grep EST |awk '{print $7}' | sort |uniq -c
+
 
