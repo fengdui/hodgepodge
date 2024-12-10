@@ -12,6 +12,14 @@
     <groupId>com.hodgepodge</groupId>
     <artifactId>hodgepodge-framework</artifactId>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.23</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

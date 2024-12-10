@@ -3,7 +3,9 @@ package com.hodgepodge.framework.time;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
@@ -37,6 +39,12 @@ public class MyTimeUtils {
         return ChronoUnit.DAYS.between(
                 LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()).toLocalDate(),
                 LocalDate.of(2020, 04, 30));
+    }
+
+    public void dayStart() {
+        LocalDateTime with = LocalDateTime.ofInstant(Instant.ofEpochMilli(System.currentTimeMillis()), ZoneOffset.ofHours(8)).with(LocalTime.MIN);
+        System.out.println(with.toString());
+        System.out.println(with.toEpochSecond(ZoneOffset.ofHours(8)));
     }
 
     public static void main(String[] args) {
