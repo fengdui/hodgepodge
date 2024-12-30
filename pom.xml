@@ -15,11 +15,7 @@
 
 
     <modules>
-        <module>business</module>
         <module>framework</module>
-        <module>machineLearning</module>
-        <module>other</module>
-        <module>structure</module>
     </modules>
 
     <properties>
